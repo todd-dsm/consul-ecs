@@ -33,10 +33,13 @@ module "ecs" {
     namespace = aws_service_discovery_private_dns_namespace.this.arn
   }
 
-  fargate_capacity_providers = {
-    FARGATE      = {}
-    FARGATE_SPOT = {}
-  }
+  # Fargate is not required
+  #  fargate_capacity_providers = {
+  #    FARGATE      = {}
+  #    FARGATE_SPOT = {}
+  #  }
+  # Commenting this block only affects resource:
+  # module.ecs.module.cluster.aws_ecs_cluster_capacity_providers.this
 
   # Shared task execution role
   create_task_exec_iam_role = true
